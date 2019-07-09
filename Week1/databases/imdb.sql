@@ -19,14 +19,20 @@
 -- Table structure for table `actors`
 --
 
+DROP database IF EXISTS imdb;
+CREATE database imdb;
+USE imdb;
+
 DROP TABLE IF EXISTS `actors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `actors` (
   `aid` int(11) NOT NULL AUTO_INCREMENT,
-  `aname` varchar(50) DEFAULT NULL,
+  `fname` varchar(50) DEFAULT NULL,
+  `lname` varchar(50) DEFAULT NULL,
   `biography` text,
-  `won_oscar` tinyint(1) DEFAULT NULL,
+  `age` tinyint(2) DEFAULT NULL,
+  `gender`  varchar(1) DEFAULT NULL,
   PRIMARY KEY (`aid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,34 +43,37 @@ CREATE TABLE `actors` (
 
 LOCK TABLES `actors` WRITE;
 /*!40000 ALTER TABLE `actors` DISABLE KEYS */;
-INSERT INTO `actors` VALUES (1,'Brad Pitt','lot of adopted children',0),(2,'Orlando Bloom','',0),(3,'Arnold Schwartzenegger','body builder',0),(4,'Elpidia Carrillo','Nothing',0);
+INSERT INTO `actors` VALUES (1,'Brad','Pitt','lot of adopted children',55, 'm'),(2,'Orlando','Bloom','Cool guy',42, 'm'),(3,'Arnold','Schwartzenegger','body builder',71, 'm'),
+(4,'Jennifer','Lawrence','100 most influential people',28, 'f'),(5,'Anne','Hathaway','1 golden globe',36, 'f'),(6,'Meryl','Streep','31 Golden globe nominations',70, 'f'),
+(7,'Jennifer','Aniston','Played in friends',50, 'f');
 /*!40000 ALTER TABLE `actors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `movies`
+-- Table structure for table `films`
 --
 
-DROP TABLE IF EXISTS `movies`;
+DROP TABLE IF EXISTS `films`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `movies` (
+CREATE TABLE `films` (
   `mid` int(11) NOT NULL AUTO_INCREMENT,
-  `mname` varchar(50) DEFAULT NULL,
-  `release_date` date DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `year` int(4) DEFAULT NULL,
   `rating` int(11) DEFAULT NULL,
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `movies`
+-- Dumping data for table `films`
 --
 
-LOCK TABLES `movies` WRITE;
-/*!40000 ALTER TABLE `movies` DISABLE KEYS */;
-INSERT INTO `movies` VALUES (1,'Predator','1987-06-12',9),(2,'Troy','2004-05-14',8);
-/*!40000 ALTER TABLE `movies` ENABLE KEYS */;
+LOCK TABLES `films` WRITE;
+/*!40000 ALTER TABLE `films` DISABLE KEYS */;
+INSERT INTO `films` VALUES (1,'Predator','1987',9),(2,'Troy','2004',8), (3,'Hunger Games','2012',7),
+(4,'Kramer vs Kramer','1970',8), (5,'Colossal','2016',6),(6,'Fight Club','1999',9);
+/*!40000 ALTER TABLE `films` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -82,7 +91,7 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`rid`),
   KEY `mid` (`mid`),
   KEY `aid` (`aid`),
-  CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `movies` (`mid`),
+  CONSTRAINT `roles_ibfk_1` FOREIGN KEY (`mid`) REFERENCES `films` (`mid`),
   CONSTRAINT `roles_ibfk_2` FOREIGN KEY (`aid`) REFERENCES `actors` (`aid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -93,7 +102,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,2,'Achilees',1),(2,2,'Paris',2),(3,1,'someone',4),(4,1,'someone else',5);
+INSERT INTO `roles` VALUES (1,2,'Achilees',1),(2,2,'Paris',2),(3,1,'Dutch',4),(4,3,'Katniss',5), (1,6,'Tyler',6), (6,4,'Joana',7), (5,5,'Gloria',8);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
