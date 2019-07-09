@@ -1,0 +1,7 @@
+- `show databases;`
+- `use [database name]`
+- `show tables`
+- `select * from [table name]`
+- `show columns from [table name]` === `describe [table name]`
+- `SELECT * FROM [table name] WHERE [column name] = '***';`
+- `SELECT COUNT(*) / SUM(column name) / AVG(column name) / MAX(column name) / MIN(column name) FROM [table name];`
