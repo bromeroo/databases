@@ -12,13 +12,49 @@
 `INNER JOIN [table name2]`<br> 
 `ON [tablename1].columnname = [tablename2].columnname;`
 
-
+___
    <h1>Homework</h1>  
    <h2>2. Create your database:</h2>  
 Create a database for the library based on the EDR diagram that we made today. Create the tables and populate them. You can choose to how extended your database will be but create at least 4 tables with 3 or 4 rows in each. Make sure that you use the correct data types (and that you use at least 3 different ones, eg: text, number, date). Keep in mind, a Library can have more than one copies of a book. There should be a mechanism to know if a copy is available or not.  (HINT: Use the sample databases you downloaded to help you)  Optional: Try to think what would be a good identifier (primary key) in each of your tables.
 
-**_Solution_**
+  <br>
+  **_Solution_**  
+    
+CREATE TABLE "Books" (  
+  "BookID" int NOT NULL AUTO_INCREMENT,  
+  "Author" nvarchar(50) NOT NULL DEFAULT "codelawer",  
+  "Language" nvarchar(50) NOT NULL,  
+  "Year" int NOT NULL,  
+  "Copy" int NOT NULL,  
+  "Description" text,  
+  "BorrowDate" datetime,  
+  "ReturnDate" datetime,  
+  PRIMARY KEY ("BookID")  
+);  
+  
+CREATE TABLE "Client" (
+  "ClientID" int NOT NULL,
+  "Name" nvarchar(50) NOT NULL,
+  "Surname" nvarchar(50)NOT NULL,
+  "Phone" nvarchar(10) NOT NULL,
+  "BorrowDate" datetime,
+  "ReturnDate" datetime,
+  PRIMARY KEY ("ClientID")
+);
+  
+CREATE TABLE "Borrow" (
+  "BorrowID" int NOT NULL,
+  "BookID" int,
+  "ClientID" int,
+  "Edition" int,
+  "Copy" int,
+  "BorrowDate" datetime,
+  "ReturnDate" datetime,
+  PRIMARY KEY ("BorrowID"),
+  KEY "FK" ("BookID", "ClientID")
+);
 
+___
 
    
  <h2>3- Write queries to retrieve data that answers the following questions:</h2>  
