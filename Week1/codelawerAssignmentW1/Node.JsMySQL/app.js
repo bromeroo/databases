@@ -6,7 +6,7 @@ const PORT = 3000;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Belgium32',
+  password: '1234',
   database: 'trial',
 });
 
@@ -22,23 +22,23 @@ app.get('/createtable', (req, res) => {
   let posts =
     'CREATE TABLE posts(id int NOT NULL AUTO_INCREMENT, title varchar(250), body varchar(250), PRIMARY KEY (id)) ';
   let show = 'show tables';
-  connection.query(posts, (err, results) => {
+  connection.query(posts, err => {
     if (err) {
       if (err.code == 'ER_TABLE_EXISTS_ERROR') {
-        connection.query('drop table posts', (err, results) => {
+        connection.query('drop table posts', err => {
           if (err) throw err;
           connection.query('show tables', (err, result) => {
             if (err) throw err;
             res.send(result);
-            console.log(result, 'Table FOUND and After DELETED');
+            console.log('Table FOUND and After DELETED', result);
           });
         });
       }
     } else {
-      connection.query('show columns from posts', (err, result) => {
+      connection.query('show tables', (err, result) => {
         if (err) throw err;
         res.send(result);
-        console.log(result, 'Table created');
+        console.log('Table created', result);
       });
     }
   });
@@ -66,7 +66,7 @@ app.get('/selectall', (req, res) => {
 
 //Get Spesific Post
 app.get('/select/:id', (req, res) => {
-  let selSps = 'SELECT * from posts where id = ? ';
+  let selSps = 'SELECT * from posts where id = ? '; // ? is equal to placeholder
   connection.query(selSps, req.params.id, (err, results, fields) => {
     if (err) {
       throw err;
