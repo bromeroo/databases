@@ -43,15 +43,15 @@ CREATE TABLE "Borrow" (
 --  _Use world.sql db._
   
 -- i- What are the names of the countries with population greater than 8 million  
-  `SELECT * from country where population >8000000`  
+  SELECT * from country where population >8000000  
 -- ii- What are the names of the countries that have “land” in their names ?    
-`SELECT name from country where name like "%land%";`  
+SELECT name from country where name like "%land%";  
 -- iii- What are the names of the cities with population in between 500,000 and 1 million ?   
-`SELECT name from city where population between 500000 and 1000000;`  
+SELECT name from city where population between 500000 and 1000000;  
 -- iv- What are the names of all the countries on the continent ‘Europe’ ?    
-`SELECT name from country where continent = "europe";`  
+SELECT name from country where continent = "europe";  
 -- v- List all the countries in the descending order based on their surface areas.  
-`SELECT * from country order by  surfacearea desc;`    
+SELECT * from country order by  surfacearea desc;    
 
 
 -- _If you have time left and want more practice you can try these optional homework exercises:_  
@@ -59,12 +59,12 @@ CREATE TABLE "Borrow" (
 -- **_1. Write queries that answer the following questions:_**  
 
 -- i. What are the names of all the cities in the Netherlands?  
-`SELECT * from city where countrycode="NLD";`  
+SELECT * from city where countrycode="NLD";  
 -- ii. What's the population of Rotterdam?  
-`SELECT name, population from city where name="rotterdam";`  
+SELECT name, population from city where name="rotterdam";  
 -- iii. What's the top 10 countries based on surface area?  
-` SELECT * from country order by surfacearea desc limit 10;`  
+ SELECT * from country order by surfacearea desc limit 10;  
 -- iv. What's the top 10 cities with the highest population?  
-` SELECT * from city order by population desc limit 10;`  
+ SELECT * from city order by population desc limit 10;  
 -- v. What's the population of the world ?  
-`SELECT count(*), sum(population) from country;`  
+SELECT count(*), sum(population) from country; 
