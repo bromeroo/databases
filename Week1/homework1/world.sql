@@ -1,29 +1,19 @@
 Homework
 3. Write queries to retrieve data that answers the following questions:
 Use world.sql db.
-i.
-ii.
-iii.
-iv.
-v.
-What are the names of the countries with population greater than 8 million
-What are the names of the countries that have “land” in their names ?
-What are the names of the cities with population in between 500,000 and 1 million ?
-What are the names of all the countries on the continent ‘Europe’ ?
-List all the countries in the descending order based on their surface areas.
+i.What are the names of the countries with population greater than 8 million
+ii.What are the names of the countries that have “land” in their names ?
+iii.What are the names of the cities with population in between 500,000 and 1 million ?
+iv.What are the names of all the countries on the continent ‘Europe’ ?
+v.List all the countries in the descending order based on their surface areas.
+
 If you have time left and want more practice you can try these optional homework exercises:
-1.
-Write queries that answer the following questions:
-i.
-What are the names of all the cities in the Netherlands?
-ii.
-What's the population of Rotterdam?
-iii.
-What's the top 10 countries based on surface area?
-iv.
-What's the top 10 cities with the highest population?
-v.
-What's the population of the world ?Homework
+1.Write queries that answer the following questions:
+i.What are the names of all the cities in the Netherlands?
+ii.What's the population of Rotterdam?
+iii.What's the top 10 countries based on surface area?
+iv.What's the top 10 cities with the highest population?
+v.What's the population of the world ?Homework
 Optional: Try to connect your node.js
 
 **Solution
