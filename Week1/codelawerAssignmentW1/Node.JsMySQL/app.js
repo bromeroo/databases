@@ -21,10 +21,26 @@ connection.connect(err => {
 app.get('/createtable', (req, res) => {
   let posts =
     'CREATE TABLE posts(id int NOT NULL AUTO_INCREMENT, title varchar(250), body varchar(250), PRIMARY KEY (id)) ';
-  connection.query(posts, (err, results, fields) => {
-    if (err) throw err;
-    console.log(res);
-    res.send('Posts table created...');
+  let show = 'show tables';
+  connection.query(posts, (err, results) => {
+    if (err) {
+      if (err.code == 'ER_TABLE_EXISTS_ERROR') {
+        connection.query('drop table posts', (err, results) => {
+          if (err) throw err;
+          connection.query('show tables', (err, result) => {
+            if (err) throw err;
+            res.send(result);
+            console.log(result, 'Table FOUND and After DELETED');
+          });
+        });
+      }
+    } else {
+      connection.query('show columns from posts', (err, result) => {
+        if (err) throw err;
+        res.send(result);
+        console.log(result, 'Table created');
+      });
+    }
   });
 });
 
@@ -65,15 +81,23 @@ app.get('/select/:id', (req, res) => {
 
 //Delete Row
 app.get('/delete/:id', (req, res) => {
-  let del = 'DELETE FROM posts where id = ?';
+  let del = `DELETE FROM posts where id = ${req.params.id}`;
 
-  connection.query(del, req.params.id, (err, results, fields) => {
+  connection.query(del, (err, results, fields) => {
     if (err) {
       throw err;
     } else if (results.affectedRows === 0) {
       res.send('There is nothing with id number = ' + req.params.id);
     } else if (results.affectedRows > 0) {
-      res.send('The row with id number ' + req.params.id + ' ' + 'was deleted');
+      connection.query('SELECT * from posts', (err, result) => {
+        if (err) throw err;
+        res.send(
+          `The row with id number ${req.params.id}  was deleted` +
+            '<br>' +
+            `${JSON.stringify(result)}`,
+        );
+        console.log(result);
+      });
     }
   });
 });
