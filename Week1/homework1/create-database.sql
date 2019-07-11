@@ -11,6 +11,18 @@ create table reservation(id_reservation int,id_borrower int  not null,id_copycop
 
 create table borrower(id_borrower int  not null,name varchar(50),email text not null,primary key(id_borrower));
 
+mysql> show tables;
++-------------------+
+| Tables_in_library |
++-------------------+
+| author            |
+| book              |
+| borrower          |
+| copy              |
+| reservation       |
++-------------------+
+5 rows in set (0.00 sec)
+
 mysql> insert into author value(1,'F.Scott Fitzgerald','USA','1896-09-24');
 Query OK, 1 row affected (0.01 sec)
 
