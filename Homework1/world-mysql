@@ -1,8 +1,15 @@
 show databases;
+
 use world;
+
 show tables;
+
 select * from country where population>8000000;
+
 select * from country where name like "%land%";
+
 select * from city where population between 500000 and 1000000;
+
 select * from country where continent="Europe";
+
 select * from country order by SurfaceArea desc;
