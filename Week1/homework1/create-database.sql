@@ -11,7 +11,7 @@ create table reservation(id_reservation int,id_borrower int  not null,id_copycop
 
 create table borrower(id_borrower int  not null,name varchar(50),email text not null,primary key(id_borrower));
 
-mysql> show tables;
+ show tables;
 +-------------------+
 | Tables_in_library |
 +-------------------+
@@ -21,29 +21,25 @@ mysql> show tables;
 | copy              |
 | reservation       |
 +-------------------+
-5 rows in set (0.00 sec)
 
-mysql> insert into author value(1,'F.Scott Fitzgerald','USA','1896-09-24');
-Query OK, 1 row affected (0.01 sec)
+insert into author value(1,'F.Scott Fitzgerald','USA','1896-09-24');
 
-mysql> select * from author;
+
+select * from author;
 +-----------+--------------------+---------+------------+
 | id_author | name               | country | born_in    |
 +-----------+--------------------+---------+------------+
 |         1 | F.Scott Fitzgerald | USA     | 1896-09-24 |
 +-----------+--------------------+---------+------------+
-1 row in set (0.00 sec)
 
-mysql> insert into author value(2,'Nathaniel Hawthorne','USA','1804-07-04');
+
 insert into author value(2,'Nathaniel Hawthorne','USA','1804-07-04');
 
-mysql> insert into author value(3,'Elif Shafak','TUR','1971-10-25');
-Query OK, 1 row affected (0.01 sec)
+insert into author value(3,'Elif Shafak','TUR','1971-10-25');
 
-mysql> insert into author value(4,'Jacques Brel','BEL','1929-04-08');
-Query OK, 1 row affected (0.01 sec)
+insert into author value(4,'Jacques Brel','BEL','1929-04-08');
 
-mysql> select *from author;
+select *from author;
 +-----------+---------------------+---------+------------+
 | id_author | name                | country | born_in    |
 +-----------+---------------------+---------+------------+
@@ -52,21 +48,14 @@ mysql> select *from author;
 |         3 | Elif Shafak         | TUR     | 1971-10-25 |
 |         4 | Jacques Brel        | BEL     | 1929-04-08 |
 +-----------+---------------------+---------+------------+
-4 rows in set (0.00 sec)
 
-mysql> insert into book value(1,'The Great Gatsby',97860525);
-Query OK, 1 row affected (0.01 sec)
+insert into book value(1,'The Great Gatsby',97860525);
+insert into book value(2,'The Scarlet Letter',12345678);
+insert into book value(3,'Forty Rules Of Love',56789438);
+insert into book value(4,'L`Oeuvre Integrale',34561908);
 
-mysql> insert into book value(2,'The Scarlet Letter',12345678);
-Query OK, 1 row affected (0.00 sec)
 
-mysql> insert into book value(3,'Forty Rules Of Love',56789438);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> insert into book value(4,'L`Oeuvre Integrale',34561908);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from book;
+select * from book;
 +-----------+---------------------+----------+
 | id_author | title               | ISBN     |
 +-----------+---------------------+----------+
@@ -75,20 +64,13 @@ mysql> select * from book;
 |         3 | Forty Rules Of Love | 56789438 |
 |         1 | The Great Gatsby    | 97860525 |
 +-----------+---------------------+----------+
-4 rows in set (0.00 sec)
-mysql> insert into copy value(1,'Y',97860525);
-Query OK, 1 row affected (0.01 sec)
 
-mysql> insert into copy value(2,'Y',12345678);
-Query OK, 1 row affected (0.01 sec)
+insert into copy value(1,'Y',97860525);
+insert into copy value(2,'Y',12345678);
+insert into copy value(3,'N',56789438);
+insert into copy value(4,'N',34561908);
 
-mysql> insert into copy value(3,'N',56789438);
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into copy value(4,'N',34561908);
-Query OK, 1 row affected (0.01 sec)
-
-mysql> select * from copy;
+select * from copy;
 +---------+--------------+----------+
 | id_copy | is_available | ISBN     |
 +---------+--------------+----------+
@@ -97,21 +79,13 @@ mysql> select * from copy;
 |       3 | N            | 56789438 |
 |       4 | N            | 34561908 |
 +---------+--------------+----------+
-4 rows in set (0.00 sec)
+insert into reservation value(100,156,11,'2019-07-11');
+insert into reservation value(101,157,12,'2019-07-12');
+insert into reservation value(102,158,13,'2019-07-13');
+insert into reservation value(103,159,14,'2019-07-13');
 
-mysql> insert into reservation value(100,156,11,'2019-07-11');
-Query OK, 1 row affected (0.01 sec)
 
-mysql> insert into reservation value(101,157,12,'2019-07-12');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into reservation value(102,158,13,'2019-07-13');
-Query OK, 1 row affected (0.01 sec)
-
-mysql> insert into reservation value(103,159,14,'2019-07-13');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> select * from reservation;
+select * from reservation;
 +----------------+-------------+-------------+------------+
 | id_reservation | id_borrower | id_copycopy | due_date   |
 +----------------+-------------+-------------+------------+
@@ -120,20 +94,13 @@ mysql> select * from reservation;
 |            102 |         158 |          13 | 2019-07-13 |
 |            103 |         159 |          14 | 2019-07-13 |
 +----------------+-------------+-------------+------------+
-4 rows in set (0.01 sec)
 
 
-mysql> insert into borrower  value(156,'Nihan Akkose','fnakkose@hotmail.com');
-Query OK, 1 row affected (0.00 sec)
+insert into borrower  value(156,'Nihan Akkose','fnakkose@hotmail.com');
+insert into borrower  value(157,'Fazilet Kosure','faziletkosure1@gmail.com');
+insert into borrower  value(158,'Linda Moggio','lindamoggio@hotmail.com');
+insert into borrower  value(159,'Alfi Yusrina','alfiyusrina@gmail.com');
 
-mysql> insert into borrower  value(157,'Fazilet Kosure','faziletkosure1@gmail.com');
-Query OK, 1 row affected (0.01 sec)
-
-mysql> insert into borrower  value(158,'Linda Moggio','lindamoggio@hotmail.com');
-Query OK, 1 row affected (0.00 sec)
-
-mysql> insert into borrower  value(159,'Alfi Yusrina','alfiyusrina@gmail.com');
-Query OK, 1 row affected (0.01 sec)
 
 mysql> select *from borrower;
 +-------------+----------------+--------------------------+
@@ -144,7 +111,7 @@ mysql> select *from borrower;
 |         158 | Linda Moggio   | lindamoggio@hotmail.com  |
 |         159 | Alfi Yusrina   | alfiyusrina@gmail.com    |
 +-------------+----------------+--------------------------+
-4 rows in set (0.00 sec)
+
 
 
 
