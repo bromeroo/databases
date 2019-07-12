@@ -25,7 +25,7 @@ mysql> select count(population) from country;
 +-------------------+
 |               239 |
 +-------------------+
-1 row in set (0.00 sec)
+
 //i
 mysql> select name from country where population>8000000;
 +---------------------------------------+
@@ -120,7 +120,7 @@ mysql> select name from country where population>8000000;
 | Zambia                                |
 | Zimbabwe                              |
 +---------------------------------------+
-88 rows in set (0.00 sec)
+
 //ii
 mysql> select name from country where name like "%land";
 +------------------+
@@ -139,7 +139,7 @@ mysql> select name from country where name like "%land";
 | Swaziland        |
 | Thailand         |
 +------------------+
-12 rows in set (0.01 sec)
+
 //iii
 mysql> select name from city where population between 500000 and 1000000;
 +--------------------------------+
@@ -449,7 +449,6 @@ mysql> select name from city where population between 500000 and 1000000;
 | Oklahoma City                  |
 | Bulawayo                       |
 +--------------------------------+
-303 rows in set (0.01 sec)
 
 //iv
 
@@ -504,8 +503,6 @@ mysql> select name from country where continent = "Europe";
 | Holy See (Vatican City State) |
 | Yugoslavia                    |
 +-------------------------------+
-46 rows in set (0.00 sec)
-
 //v
 mysql> select name from country order by surfaceArea  desc;
 +----------------------------------------------+
@@ -751,7 +748,7 @@ mysql> select name from country order by surfaceArea  desc;
 | Monaco                                       |
 | Holy See (Vatican City State)                |
 +----------------------------------------------+
-239 rows in set (0.01 sec)
+
 //1 .i
 mysql> select name from city where countryCode="NLD";
 +-------------------+
@@ -786,7 +783,6 @@ mysql> select name from city where countryCode="NLD";
 | Heerlen           |
 | Alkmaar           |
 +-------------------+
-28 rows in set (0.01 sec)
 
 //1.ii
 mysql> select population from city where name = "Rotterdam";
@@ -795,7 +791,6 @@ mysql> select population from city where name = "Rotterdam";
 +------------+
 |     593321 |
 +------------+
-1 row in set (0.00 sec)
 
 //1.iii
 mysql> select name from country order by surfaceArea  desc limit 10;
@@ -813,7 +808,7 @@ mysql> select name from country order by surfaceArea  desc limit 10;
 | Argentina          |
 | Kazakstan          |
 +--------------------+
-10 rows in set (0.00 sec)
+
 //1.iv
 mysql> select name from city order by population desc limit 10;
 +-------------------+
@@ -830,7 +825,7 @@ mysql> select name from city order by population desc limit 10;
 | Moscow            |
 | New York          |
 +-------------------+
-10 rows in set (0.00 sec)
+
 
 //1.v
 mysql> select sum(population) from country;
@@ -839,4 +834,4 @@ mysql> select sum(population) from country;
 +-----------------+
 |      6078749450 |
 +-----------------+
-1 row in set (0.01 sec)
+
