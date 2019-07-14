@@ -40,6 +40,13 @@ FROM table
 ## Aliasing tables
 
 ```sql
+SELECT t.column 
+FROM table AS t
+```
+
+## Aliasing columns
+
+```sql
 SELECT column AS alias
 FROM table
 ```
