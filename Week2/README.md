@@ -42,16 +42,6 @@ ALTER TABLE Employee ADD CONSTRAINT fk_dept foreign key (dept_id) references Dep
 ```
 
 
-### Database dump
-
-A database dump (aka SQL dump) contains a record of the table structure
-and/or the data from a database and is usually in the form of a list of SQL statements.
-(An example file named `world.sql` is present in the Week2 folder)
-
-- Collecting the dump of an existing database from terminal `mysqldump -uroot -p database > dump-file.sql`
-- Applying the dump from mysql command prompt `source /path/to/the/dump/file`
-- Applying the dump from the terminal `mysql -uroot -p [database] < /path/to/the/dump/file`
-
 ### Group by and Having clauses
 
 - *Group by* clause is used to group rows with same values.
@@ -64,13 +54,6 @@ and/or the data from a database and is usually in the form of a list of SQL stat
 ```
 INSERT INTO Department SET dept_id=101, dept_name='fun', dept_head='unmesh';
 ```
-### Promise based program demo
-
-The program is called `async-create-insert.js` and can be found in Week2 folder.
-- async : to create asynchronous function and ensure they return promise without having to worry
-about building those promises
-- await : to call a function returning promise without having to call .then() over that promise
-- promisify() : to convert a callback based function to a promise based one.
 
 ### Relationships between tables : 1-M, M-M
 
@@ -97,34 +80,6 @@ update Department set dept_head = 'Lucas' where dept_id = 3;
 - left and right join : reverse of each other
 - [Join manual](https://dev.mysql.com/doc/refman/8.0/en/join.html)
 
-### Triggers
-* Triggers are a mechanism in SQL to prevent seemingly impossible data in the tables.
-* Triggers are fired before/after insertion or updation of the database tables.
-* Following is an example trigger which fires before any row is inserted into employee table.
-Let the insert command be `insert into project values (104, "ironman", 1, "2007-01-01")`.
-Then the variable `new` contains (104, "ironman", 1, "2007-01-01").
-i.e. `new` automatically gets all the column names of the project table.
-```
-mysql> delimiter $$
-mysql> CREATE TRIGGER date_trigger
-    BEFORE INSERT
-        ON project
-            FOR EACH ROW
-            BEGIN
-                DECLARE message VARCHAR(100);
-                DECLARE sd datetime ;
-                SET sd= (select starting_date from employee where eno=new.manager_id);
-                IF new.start_date < sd
-                THEN
-                    set message= 'Project date cannot be earlier than manager starting date';
-                    SET lc_messages=message; SIGNAL SQLSTATE '45000';
-                END IF;
-            END $$
-
-mysql> delimiter ;
-```
-This trigger gives error if the start date of the project is earlier than the starting date
-of the manager of the project.
 
 ## Reference Material
 

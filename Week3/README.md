@@ -19,6 +19,24 @@ Also, please read the following page that explains database foreign keys.
 ### Entity Relationship Diagrams
     - Associative entities from many-to-many relationships
     - Boolean attribute instead of a table
+	
+### Database dump
+
+A database dump (aka SQL dump) contains a record of the table structure
+and/or the data from a database and is usually in the form of a list of SQL statements.
+(An example file named `world.sql` is present in the Week2 folder)
+
+- Collecting the dump of an existing database from terminal `mysqldump -uroot -p database > dump-file.sql`
+- Applying the dump from mysql command prompt `source /path/to/the/dump/file`
+- Applying the dump from the terminal `mysql -uroot -p [database] < /path/to/the/dump/file`
+
+### Promise based program demo
+
+The program is called `async-create-insert.js` and can be found in Week2 folder.
+- async : to create asynchronous function and ensure they return promise without having to worry
+about building those promises
+- await : to call a function returning promise without having to call .then() over that promise
+- promisify() : to convert a callback based function to a promise based one.
 
 ### Normalization
 Database Design following normal forms as a convention.
