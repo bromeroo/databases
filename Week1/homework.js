@@ -17,36 +17,43 @@ connection.connect(function(err) {
  
   console.log('connected as id ' + connection.threadId);
  //create database
-  connection.query("CREATE DATABASE world3", function (err, result) {
+ var createDB = "CREATE DATABASE IF NOT EXISTS world;";
+ console.log(createDB);
+  connection.query(createDB, function (err, result) {
     if (err) throw err;
     console.log("Database created");
   });
 //create table world
-    var tableCountry = "CREATE TABLE IF NOT EXISTS country (\
-        name TEXT NOT NULL, \
-        Continent TEXT, \
-        Region TEXT, \
-        SurfaceArea INT, \
-        IndepYear YEAR, \
-        Population INT, \
-        LifeExpectancy DECIMAL(2,2), \
-        GNP INT, \
-        GNPOld INT, \
-        LocalName TEXT, \
-        GovernmentForm TEXT, \
-        HeadOfState TEXT, \
-        Capital TEXT,);";
-    connection.query(tableCountry, function (err, result) {
-        if (err) throw err;
-    console.log("Table Country is created");
-    });
+  var useDatabase = "use world"
+  connection.query(useDatabase, function (err, result) {
+    if (err) throw err;
+console.log("Database selected");
+  });
+  var tableCountry = "CREATE TABLE IF NOT EXISTS country (\
+     name TEXT NOT NULL, \
+      Continent TEXT, \
+      Region TEXT, \
+      SurfaceArea INT, \
+      IndepYear YEAR, \
+      Population INT, \
+      LifeExpectancy DECIMAL(2,2), \
+      GNP INT, \
+      GNPOld INT, \
+      LocalName TEXT, \
+      GovernmentForm TEXT, \
+      HeadOfState TEXT, \
+      Capital TEXT);";
+  connection.query(tableCountry, function (err, result) {
+       if (err) throw err;
+  console.log("Table Country is created");
+   });
 //create table city
     var tableCity = "CREATE TABLE IF NOT EXISTS City (\
-        Id INT AUTO INCREMENT, \
+        Id INT AUTO_INCREMENT, \
         Name TEXT, \
         CountryCode INT NOT NULL, \
         District TEXT, \
-        Population INT, \);";
+        Population INT);";
     connection.query(tableCity, function (err, result) {
         if (err) throw err;
     console.log("Table City is created");
