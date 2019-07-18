@@ -28,7 +28,117 @@ select count(distinct language) from countrylanguage where isOfficial='t';
 +--------------------------+
 1 row in set (0.00 sec)
 
-b)List the country name and their official languages.
+b)want the name of the country and the number of official languages (not the names of the languages)
+select  count(*), name from country INNER JOIN countrylanguage ON  code = countrycode where isofficial="T" Group by language;
++----------+------------------------+
+| count(*) | name                   |
++----------+------------------------+
+|        4 | Aruba                  |
+|        1 | Afghanistan            |
+|        1 | Afghanistan            |
+|       44 | Anguilla               |
+|        1 | Albania                |
+|        1 | Andorra                |
+|        1 | Netherlands Antilles   |
+|       22 | United Arab Emirates   |
+|       20 | Argentina              |
+|        1 | Armenia                |
+|        2 | American Samoa         |
+|        6 | Austria                |
+|        1 | Azerbaijan             |
+|       18 | Burundi                |
+|        1 | Burundi                |
+|        1 | Bangladesh             |
+|        1 | Bulgaria               |
+|        3 | Bosnia and Herzegovina |
+|        1 | Belarus                |
+|        3 | Belarus                |
+|        2 | Bolivia                |
+|        2 | Bolivia                |
+|        6 | Brazil                 |
+|        4 | Brunei                 |
+|        1 | Bhutan                 |
+|        4 | Switzerland            |
+|        1 | Switzerland            |
+|        2 | China                  |
+|        1 | Cook Islands           |
+|        1 | Comoros                |
+|        2 | Cyprus                 |
+|        2 | Cyprus                 |
+|        1 | Czech Republic         |
+|        3 | Denmark                |
+|        1 | Eritrea                |
+|        1 | Estonia                |
+|        1 | Finland                |
+|        2 | Finland                |
+|        1 | Fiji Islands           |
+|        1 | Faroe Islands          |
+|        1 | Georgia                |
+|        1 | Greenland              |
+|        1 | Guam                   |
+|        1 | Hungary                |
+|        1 | India                  |
+|        1 | Ireland                |
+|        1 | Iran                   |
+|        1 | Iceland                |
+|        1 | Israel                 |
+|        1 | Japan                  |
+|        1 | Kazakstan              |
+|        1 | Kyrgyzstan             |
+|        1 | Cambodia               |
+|        1 | Kiribati               |
+|        2 | South Korea            |
+|        1 | Laos                   |
+|        1 | Sri Lanka              |
+|        2 | Sri Lanka              |
+|        1 | Lesotho                |
+|        1 | Lithuania              |
+|        1 | Luxembourg             |
+|        1 | Latvia                 |
+|        2 | Moldova                |
+|        1 | Madagascar             |
+|        1 | Maldives               |
+|        1 | Marshall Islands       |
+|        1 | Macedonia              |
+|        1 | Malta                  |
+|        1 | Myanmar                |
+|        1 | Mongolia               |
+|        1 | Malawi                 |
+|        2 | Norway                 |
+|        1 | Nepal                  |
+|        1 | Nauru                  |
+|        1 | Pakistan               |
+|        1 | Philippines            |
+|        1 | Palau                  |
+|        1 | Poland                 |
+|        1 | Paraguay               |
+|        1 | Romania                |
+|        1 | Rwanda                 |
+|        1 | Senegal                |
+|        1 | Somalia                |
+|        1 | Slovakia               |
+|        1 | Slovenia               |
+|        1 | Swaziland              |
+|        1 | Togo                   |
+|        1 | Togo                   |
+|        1 | Thailand               |
+|        1 | Tajikistan             |
+|        1 | Turkmenistan           |
+|        1 | Tonga                  |
+|        1 | Tuvalu                 |
+|        1 | Taiwan                 |
+|        1 | Tanzania               |
+|        1 | Ukraine                |
+|        1 | Uzbekistan             |
+|        1 | Vietnam                |
+|        1 | Vanuatu                |
+|        1 | South Africa           |
+|        1 | South Africa           |
+|        1 | South Africa           |
++----------+------------------------+
+102 rows in set (0.00 sec)
+
+c)List the country name and their official languages.
 select name, language from country INNER JOIN countrylanguage  ON  code = countrycode where isofficial="T";
 +--------------------------------------+------------------+
 | name                                 | language         |
