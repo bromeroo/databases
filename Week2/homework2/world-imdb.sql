@@ -40,12 +40,14 @@ select count(distinct language) from countrylanguage;
 +--------------------------+
 |                      457 |
 +--------------------------+
+
 select count(distinct language) from countrylanguage  where isOfficial = 'T';
 +--------------------------+
 | count(distinct language) |
 +--------------------------+
 |                      102 |
 +--------------------------+
+
 select name, language from country INNER JOIN countrylanguage ON  code = countrycode where isofficial="T" ;
 +--------------------------------------+------------------+
 | name                                 | language         |
@@ -122,11 +124,7 @@ select count(*), countryCode, name, isOfficial from countrylanguage join country
 |        1 | BGR         | Bulgaria                             | T          |
 |        1 | BHR         | Bahrain                              | T          |
 |        1 | BIH         | Bosnia and Herzegovina               | T          |
-|        1 | BLZ         | Belize                               | T          |
-|        1 | BMU         | Bermuda                              | T          |
-|        1 | BRA         | Brazil                               | T          |
 
-| 
 152 rows in set (0.01 sec)
 
 5.Find which countries do not have a capital.
@@ -225,11 +223,11 @@ describe films;
 +----------+-------------+------+-----+---------+----------------+
 5 rows in set (0.01 sec)
 
-mysql> ALTER TABLE films ADD duration TIME;
+ALTER TABLE films ADD duration TIME;
 Query OK, 0 rows affected (0.12 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> describe films;
+ describe films;
 +----------+-------------+------+-----+---------+----------------+
 | Field    | Type        | Null | Key | Default | Extra          |
 +----------+-------------+------+-----+---------+----------------+
@@ -261,7 +259,7 @@ ALTER TABLE actors MODIFY age INT;
 Query OK, 9 rows affected (0.09 sec)
 Records: 9  Duplicates: 0  Warnings: 0
 
-mysql> describe actors;
+describe actors;
 +-----------+-------------+------+-----+---------+----------------+
 | Field     | Type        | Null | Key | Default | Extra          |
 +-----------+-------------+------+-----+---------+----------------+
@@ -277,7 +275,7 @@ mysql> describe actors;
 
 12.Print the names and biographies of the actors in this format “ANNE HATHAWAY BIO: 1 golden globe”
 
-mysql> select concat(upper(fname), ' ', upper(lname),' ','BIO',':',' ',  biography) from actors;
+select concat(upper(fname), ' ', upper(lname),' ','BIO',':',' ',  biography) from actors;
 +-----------------------------------------------------------------------+
 | concat(upper(fname), ' ', upper(lname),' ','BIO',':',' ',  biography) |
 +-----------------------------------------------------------------------+
@@ -299,7 +297,7 @@ alter table actors drop biography;
 Query OK, 0 rows affected (0.09 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> describe actors;
+describe actors;
 +--------+-------------+------+-----+---------+----------------+
 | Field  | Type        | Null | Key | Default | Extra          |
 +--------+-------------+------+-----+---------+----------------+
