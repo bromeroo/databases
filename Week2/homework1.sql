@@ -19,3 +19,21 @@ select Name, Population from country order by Population asc limit 1;
 
 --Make a list with all the languages spoken in Eastern Africa.
 select country.Name, countrylanguage.Language from country left join countrylanguage on country.Code = countrylanguage.CountryCode where country.Region = "Eastern Africa";
+
+--Find the minimum and the maximum age of the actors per gender.
+select gender, min(age) as minage, max(age) as maxage from actors group by gender;
+
+--Find how many actors are in their 20’s, 30’s, 40’s, 50’s etc (grouped by decade).
+select floor(age / 10) * 10 as decade from actors order by decade;
+
+--Add a column to the films table for storing the duration (runtime) or each film.
+alter table films add column filmduration int default 30;
+
+--Alter the data type of column age to INT.
+alter table actors change age age int(3);
+
+--Print the names and biographies of the actors in this format “ANNE HATHAWAY BIO: 1 golden globe”
+select concat (UPPER(fname)," ", UPPER(lname), " ", "BIO:"," ", biography) as bioactors from actors;
+
+--Delete the column biography from films.
+alter table actors drop biography;
