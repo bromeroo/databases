@@ -450,13 +450,18 @@ select name from country INNER JOIN countrylanguage ON  code = countrycode where
 +----------------------------------------------+---------+
 
 6. Which country has the lowest population?
-select min(population),name from country;
-+-----------------+-------+
-| min(population) | name  |
-+-----------------+-------+
-|               0 | Aruba |
-+-----------------+-------+
-1 row in set (0.00 sec)
+ select name from country where population=(select min(population)from country);
++----------------------------------------------+
+| name                                         |
++----------------------------------------------+
+| Antarctica                                   |
+| French Southern territories                  |
+| Bouvet Island                                |
+| Heard Island and McDonald Islands            |
+| British Indian Ocean Territory               |
+| South Georgia and the South Sandwich Islands |
+| United States Minor Outlying Islands         |
++----------------------------------------------+
 
 7. Make a list with all the languages spoken in Eastern Africa.
  select language from country inner join countrylanguage on code=countrycode where region='eastern africa' group by language;
