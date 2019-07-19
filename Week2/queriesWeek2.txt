@@ -1,0 +1,166 @@
+﻿Homework 1 (More Queries)
+WORLD:
+1. What is the name and the population of the most populated city in India? 
+2. List the names of the countries having at least 3 cities with 3 million inhabitants. 
+3. What is the number of all the official languages? List the country name and their official languages. 
+4. Find all the countries that have only one official language 
+5. Find which countries do not have a capital.  
+6. Which country has the lowest population? 
+7. Make a list with all the languages spoken in Eastern Africa.
+IMDB
+8. Find the minimum and the maximum age of the actors per gender. 
+9. Find how many actors are in their 20’s, 30’s, 40’s, 50’s etc (grouped by decade). 
+10. Add a column to the films table for storing the duration (runtime) or each film. 
+11. Alter the data type of column age to INT. 
+12. Print the names and biographies of the actors in 
+this format “ANNE HATHAWAY BIO: 1 golden globe” 
+13. Delete the column biography from films.
+
+
+1. select name, max(population) from city where countrycode = 'IND';
+2.  SELECT countrycode, count(countrycode) as 'number of cities' from city where population>=3000000 GROUP BY countrycode HAVING COUNT(countrycode)>2;
++-------------+------------------+
+| countrycode | number of cities |
++-------------+------------------+
+| CHN         |                9 |
+| IND         |                4 |
++-------------+------------------+
+
+3.  a. select count(distinct language) as 'Number Of Official Languages' from countrylanguage where IsOfficial = 'T';
++------------------------------+
+| Number Of Official Languages |
++------------------------------+
+|                          102 |
++------------------------------+
+   b. SELECT country.name, Language FROM countrylanguage JOIN country ON country.code=countrylanguage.countrycode WHERE IsOfficial='T';
++--------------------------------------+------------------+
+| name                                 | Language         |
++--------------------------------------+------------------+
+| Aruba                                | Dutch            |
+| Afghanistan                          | Dari             |
+| Afghanistan                          | Pashto           |
+| Anguilla                             | English          |
+| Albania                              | Albaniana        |
+| Andorra                              | Catalan          |
+| Netherlands Antilles                 | Dutch            |
+| Netherlands Antilles                 | Papiamento       |
+| United Arab Emirates                 | Arabic           |
+| Argentina                            | Spanish          |
+...238 rows in set (0.00 sec)
+
+4. SELECT name AS 'Countries with one official language' FROM country JOIN countrylanguage ON country.code=countrylanguage.countrycode WHERE IsOfficial='T' GROUP BY countrycode HAVING COUNT(countrycode)=1;
++--------------------------------------+
+| Countries with one official language |
++--------------------------------------+
+| Aruba                                |
+| Anguilla                             |
+| Albania                              |
+| Andorra                              |
+| United Arab Emirates                 |
+| Argentina                            |
+| Armenia                              |
+| Antigua and Barbuda                  |
+... 152 rows in set (0.00 sec)
+
+5. SELECT name FROM country WHERE capital IS NULL;
++----------------------------------------------+
+| name                                         |
++----------------------------------------------+
+| Antarctica                                   |
+| French Southern territories                  |
+| Bouvet Island                                |
+| Heard Island and McDonald Islands            |
+| British Indian Ocean Territory               |
+| South Georgia and the South Sandwich Islands |
+| United States Minor Outlying Islands         |
++----------------------------------------------+
+
+6. select name as 'the country with the lowest population', population from country where population = (select min(population) from country);
++----------------------------------------------+------------+
+| the country with the lowest population       | population |
++----------------------------------------------+------------+
+| Antarctica                                   |          0 |
+| French Southern territories                  |          0 |
+| Bouvet Island                                |          0 |
+| Heard Island and McDonald Islands            |          0 |
+| British Indian Ocean Territory               |          0 |
+| South Georgia and the South Sandwich Islands |          0 |
+| United States Minor Outlying Islands         |          0 |
++----------------------------------------------+------------+
+7 rows in set (0.00 sec)
+
+7. SELECT COUNT(language) FROM countrylanguage JOIN country ON country.code=countrylanguage.countrycode WHERE region = 'Eastern Africa';
++-----------------+
+| COUNT(language) |
++-----------------+
+|             102 |
++-----------------+
+1 row in set (0.00 sec)
+
+IMDB
+
+8.  SELECT gender, MIN(age), MAX(age) FROM actors GROUP BY gender;
++--------+----------+----------+
+| gender | MIN(age) | MAX(age) |
++--------+----------+----------+
+| m      |       42 |       82 |
+| f      |       28 |       70 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+9. select count(age) as 'Number Of Actors', concat(floor(age/10)*10, '-', floor(age/10)*10+10) as 'Age Group'from actors group by floor(age/10)*10 ORDER BY floor(age/10)*10 ASC;
++------------------+-----------+
+| Number Of Actors | Age Group |
++------------------+-----------+
+|                1 | 20-30     |
+|                1 | 30-40     |
+|                1 | 40-50     |
+|                3 | 50-60     |
+|                2 | 70-80     |
+|                1 | 80-90     |
++------------------+-----------+
+
+10. ALTER TABLE films add Duration INT;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+11.  Alter the data type of column age to INT. 
+ALTER TABLE actors MODIFY age INT;
+Query OK, 9 rows affected (0.09 sec)
+
+12. Print the names and biographies of the actors inCthis format “ANNE HATHAWAY BIO: 1 golden globe” 
+
+SELECT CONCAT(UPPER(fname), ' ', UPPER(lname), ' BIO: ', biography) as 'Actors & Bios'from actors;
++----------------------------------------------------+
+| Actors & Bios                                      |
++----------------------------------------------------+
+| BRAD PITT BIO: lot of adopted children             |
+| ORLANDO BLOOM BIO: Cool guy                        |
+| ARNOLD SCHWARTZENEGGER BIO: body builder           |
+| JENNIFER LAWRENCE BIO: 100 most influential people |
+| ANNE HATHAWAY BIO: 1 golden globe                  |
+| MERYL STREEP BIO: 31 Golden globe nominations      |
+| JENNIFER ANISTON BIO: Played in friends            |
+| HELENA BONHAM CARTER BIO: Wife of Tim Burton       |
+| MORGAN FREEMAN BIO: Narrator voice in every movie  |
++----------------------------------------------------+
+
+13. Delete the column biography from films. (actors?)
+
+ALTER TABLE actors DROP biography;
+Query OK, 0 rows affected (0.19 sec)
+
+select * from actors;
++-----+----------+-----------------+------+--------+
+| aid | fname    | lname           | age  | gender |
++-----+----------+-----------------+------+--------+
+|   1 | Brad     | Pitt            |   55 | m      |
+|   2 | Orlando  | Bloom           |   42 | m      |
+|   3 | Arnold   | Schwartzenegger |   71 | m      |
+|   4 | Jennifer | Lawrence        |   28 | f      |
+|   5 | Anne     | Hathaway        |   36 | f      |
+|   6 | Meryl    | Streep          |   70 | f      |
+|   7 | Jennifer | Aniston         |   50 | f      |
+|   8 | Helena   | Bonham Carter   |   53 | f      |
+|   9 | Morgan   | Freeman         |   82 | m      |
++-----+----------+-----------------+------+--------+
