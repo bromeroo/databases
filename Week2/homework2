@@ -1,0 +1,15 @@
+Homework 2
+1. Modify your ERD after what you saw today. 
+2. Create the a database, create the relevant tables and populate them with trips, 
+customers, payments and a few more (at least 10 in each table). 
+3. Use Primary and Foreign Keys to link the tables. 
+4. Create the queries (using JOINS) to tell us: 
+a. How many trips did a customer book. 
+b. What are the destinations of your favourite package? 
+c. Which are the packages that include Paris? 
+d. Or any other queries that you can think of (be creative!)
+
+
+Create a  new ERD based on the imdb database. 
+Include more entities like: Directors, Oscars etc Pay attention to Cardinality & Modality 
+Be creative :)

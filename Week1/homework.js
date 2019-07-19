@@ -15,10 +15,9 @@ connection.connect(function(err) {
     return;
   }
  
-  console.log('connected as id ' + connection.threadId);
+  console.log('connected' + connection.threadId);
  //create database
  var createDB = "CREATE DATABASE IF NOT EXISTS world;";
- console.log(createDB);
   connection.query(createDB, function (err, result) {
     if (err) throw err;
     console.log("Database created");
@@ -30,7 +29,7 @@ connection.connect(function(err) {
 console.log("Database selected");
   });
   var tableCountry = "CREATE TABLE IF NOT EXISTS country (\
-     name TEXT NOT NULL, \
+      name TEXT NOT NULL, \
       Continent TEXT, \
       Region TEXT, \
       SurfaceArea INT, \
