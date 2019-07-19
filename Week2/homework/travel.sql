@@ -12,13 +12,16 @@ CREATE TABLE `rsvp` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `client_id` INT(11) NOT NULL DEFAULT '',
   `date_option_id` INT(11) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT client FOREIGN KEY (client_id) REFERENCES client(id)
+  CONSTRAINT date_option FOREIGN KEY (date_option_id) REFERENCES date_option(id)
 );
 CREATE TABLE `payment` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `card` VARCHAR(11) NOT NULL DEFAULT '',
   `rsvp_id` INT(11) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT rsvp FOREIGN KEY (rsvp_id) REFERENCES rsvp(id)
 );
 CREATE TABLE `trip` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -34,7 +37,8 @@ CREATE TABLE `date_option` (
   `end_date` DATE NOT NULL DEFAULT '',
   `price` INT(11) NOT NULL DEFAULT '',
   `trip_id` INT(11) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT trip FOREIGN KEY (trip_id) REFERENCES trip(id)
 );
 
 CREATE TABLE `image` (
@@ -43,13 +47,15 @@ CREATE TABLE `image` (
   `title` VARCHAR(35) NOT NULL DEFAULT '',
   `filename` VARCHAR(35) NOT NULL DEFAULT '',
   `description` VARCHAR(35) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT trip FOREIGN KEY (trip_id) REFERENCES trip(id)
 );
 CREATE TABLE `itinerary` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `trip_id` INT(11) NOT NULL DEFAULT '',
   `description` text NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT trip FOREIGN KEY (trip_id) REFERENCES trip(id)
 );
 CREATE TABLE `hotel` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -57,7 +63,8 @@ CREATE TABLE `hotel` (
   `stars` INT(11) NOT NULL DEFAULT '0',
   `name` VARCHAR(255) NOT NULL DEFAULT '',
   `type_of_room` VARCHAR(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  CONSTRAINT itinerary FOREIGN KEY (itinerary_id) REFERENCES itinerary(id)
 );
 
 INSERT INTO `client` VALUES (1,`Bea`, `Johnson`,`bea@hotmail.com`, `+32494154311`);
@@ -126,24 +133,24 @@ INSERT INTO `image` VALUES (8,7, `Georgetown`, `Georgetown.jpg`, `This is in Geo
 INSERT INTO `image` VALUES (9, 9, `Pompeii`, `Pompeii.jpg`, `This is in Pompeii`);
 INSERT INTO `image` VALUES (10, 8, `Kuala Lumpur`, `KualaLumpur.jpg`, `This is in Kuala Lumpur`);
 
-INSERT INTO `itinerary` VALUES (1, 1, `Day 1`);
-INSERT INTO `itinerary` VALUES (2, 2, `Day 1`);
-INSERT INTO `itinerary` VALUES (3, 3, `Day 1`);
-INSERT INTO `itinerary` VALUES (4, 4, `Day 1`);
-INSERT INTO `itinerary` VALUES (5, 5, `Day 1`);
-INSERT INTO `itinerary` VALUES (6, 6, `Day 1`);
-INSERT INTO `itinerary` VALUES (7, 6, `Day 1`);
-INSERT INTO `itinerary` VALUES (8,7, `Day 1`);
-INSERT INTO `itinerary` VALUES (9, 9, `Day 1`);
-INSERT INTO `itinerary` VALUES (10, 8, `Day 1`);
+INSERT INTO `itinerary` VALUES (1, 1, `Day 1 morning: Walking tour`);
+INSERT INTO `itinerary` VALUES (2, 1, `Day 2 noon: Hiking a vulcanic mountain`);
+INSERT INTO `itinerary` VALUES (3, 3, `Day 1 noon: Shopping time`);
+INSERT INTO `itinerary` VALUES (4, 4, `Day 1 noon: Visiting Acropolis`);
+INSERT INTO `itinerary` VALUES (5, 5, `Day 1 night: Visiting Ningxia night market`);
+INSERT INTO `itinerary` VALUES (6, 6, `Day 1 morning: Breakfast baozi`);
+INSERT INTO `itinerary` VALUES (7, 6, `Day 1 noon: Visiting The Bund`);
+INSERT INTO `itinerary` VALUES (8,7, `Day 1 all day: Visiting temples`);
+INSERT INTO `itinerary` VALUES (9, 9, `Day 1 morning: Breakfast`);
+INSERT INTO `itinerary` VALUES (10, 8, `Day 1 noon: Lunch nasi lemak`);
 
-INSERT INTO `hotel` VALUES (1, 1, 5,`Day 1`, `Deluxe Room`);
-INSERT INTO `hotel` VALUES (2, 2, 5,`Day 1`, `Suit Room`);
-INSERT INTO `hotel` VALUES (3, 3, 5,`Day 1`, `Deluxe Room`);
-INSERT INTO `hotel` VALUES (4, 4, 5,`Day 1`, `Twin`);
-INSERT INTO `hotel` VALUES (5, 5, 5,`Day 1`, `Deluxe Room`);
-INSERT INTO `hotel` VALUES (6, 6, 5,`Day 1`, `Deluxe Room`);
-INSERT INTO `hotel` VALUES (7, 6, 5,`Day 1`, `Deluxe Room`);
-INSERT INTO `hotel` VALUES (8,7, 5,`Day 1`, `Twin`);
-INSERT INTO `hotel` VALUES (9, 9, 5,`Day 1`, `Deluxe Room`);
-INSERT INTO `hotel` VALUES (10, 8,5, `Day 1`, `Deluxe Room`);
+INSERT INTO `hotel` VALUES (1, 1, 5,`Joystar`, `Deluxe Room`);
+INSERT INTO `hotel` VALUES (2, 10, 5,`Mariott`, `Suit Room`);
+INSERT INTO `hotel` VALUES (3, 3, 5,`Novotel`, `Deluxe Room`);
+INSERT INTO `hotel` VALUES (4, 4, 5,`Ibis`, `Twin`);
+INSERT INTO `hotel` VALUES (5, 5, 5,`Pullman`, `Deluxe Room`);
+INSERT INTO `hotel` VALUES (6, 6, 5,`Hilton`, `Deluxe Room`);
+INSERT INTO `hotel` VALUES (7, 11, 5,`Reyloff`, `Deluxe Room`);
+INSERT INTO `hotel` VALUES (8,17, 5,`Pillows`, `Twin`);
+INSERT INTO `hotel` VALUES (9, 9, 5,`Gueshouse Suji`, `Twin`);
+INSERT INTO `hotel` VALUES (10, 8,5, `Hotel Marlon`, `Deluxe Room`);
