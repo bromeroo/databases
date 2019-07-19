@@ -24,7 +24,7 @@ select country.Name, countrylanguage.Language from country left join countrylang
 select gender, min(age) as minage, max(age) as maxage from actors group by gender;
 
 --Find how many actors are in their 20’s, 30’s, 40’s, 50’s etc (grouped by decade).
-select floor(age / 10) * 10 as decade from actors order by decade;
+select floor(age / 10) * 10 as decade, count(*) from actors group by decade;
 
 --Add a column to the films table for storing the duration (runtime) or each film.
 alter table films add column filmduration int default 30;
