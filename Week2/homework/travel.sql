@@ -104,27 +104,27 @@ INSERT INTO `trip` VALUES (8,`Kuala Lumpur`, `Kuala Lumpur is the capital of Mal
 INSERT INTO `trip` VALUES (9, `Pompeii`, `Pompeii was an ancient Roman city near modern Naples in the Campania region of Italy, in the territory of the comune of Pompei. Pompeii, along with Herculaneum and many villas in the surrounding area, was buried under 4 to 6 m of volcanic ash and pumice in the eruption of Mount Vesuvius in AD 79`, 1);
 INSERT INTO `trip` VALUES (10, `Jeju Island`, `Jeju province encompasses the South Korean island of Jeju in the Korea Strait. It's known for its beach resorts and volcanic landscape of craters and cavelike lava tubes. Hallasan Mountain, a dormant volcano, features hiking trails, a crater lake at the 1,950m summit and nearby Gwaneumsa Temple. The Geomunoreum Lava Tube System includes 7km-long Manjanggul Cave, created centuries ago when Hallasan was still active.`, 1);
 
-INSERT INTO `date_option` VALUES (1, 2019-09-01, 2019-09-01, 100, 1);
-INSERT INTO `date_option` VALUES (2, 2019-09-01, 2019-09-01, 200, 1);
-INSERT INTO `date_option` VALUES (3, 2019-09-01, 2019-09-01, 300, 1);
-INSERT INTO `date_option` VALUES (4, 2019-09-01, 2019-09-01, 400, 2);
-INSERT INTO `date_option` VALUES (5, 2019-09-01, 2019-09-01, 500, 2);
-INSERT INTO `date_option` VALUES (6, 2019-09-01, 2019-09-01, 600, 3);
-INSERT INTO `date_option` VALUES (7, 2019-09-01, 2019-09-01, 600, 3);
-INSERT INTO `date_option` VALUES (8,2019-09-01, 2019-09-01, 700, 4);
-INSERT INTO `date_option` VALUES (9, 2019-09-01, 2019-09-01, 900, 5);
-INSERT INTO `date_option` VALUES (10, 2019-09-01, 2019-09-01, 800, 6);
+INSERT INTO `date_option` VALUES (1, 2019-09-01, 2019-09-11, 100, 1);
+INSERT INTO `date_option` VALUES (2, 2019-09-11, 2019-09-21, 200, 1);
+INSERT INTO `date_option` VALUES (3, 2019-09-21, 2019-10-01, 300, 1);
+INSERT INTO `date_option` VALUES (4, 2019-09-01, 2019-09-11, 400, 2);
+INSERT INTO `date_option` VALUES (5, 2019-08-01, 2019-08-11, 500, 2);
+INSERT INTO `date_option` VALUES (6, 2019-09-01, 2019-09-08, 600, 3);
+INSERT INTO `date_option` VALUES (7, 2019-09-08, 2019-09-11, 600, 3);
+INSERT INTO `date_option` VALUES (8,2019-09-01, 2019-09-18, 700, 4);
+INSERT INTO `date_option` VALUES (9, 2019-09-01, 2019-09-04, 900, 5);
+INSERT INTO `date_option` VALUES (10, 2019-09-01, 2019-09-05, 800, 6);
 
 INSERT INTO `image` VALUES (1, 1, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (2, 2, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (3, 3, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (4, 4, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (5, 5, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (6, 6, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (7, 6, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (8,7, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (9, 9, `Santorini`, `santorini.jpg`, `This is in Santorini`);
-INSERT INTO `image` VALUES (10, 8, `Santorini`, `santorini.jpg`, `This is in Santorini`);
+INSERT INTO `image` VALUES (2, 2, `Alhambra`, `Alhambra.jpg`, `This is in Alhambra`);
+INSERT INTO `image` VALUES (3, 3, `Milan`, `Milan.jpg`, `This is in Milan`);
+INSERT INTO `image` VALUES (4, 4, `Athens`, `Athens.jpg`, `This is in Athens`);
+INSERT INTO `image` VALUES (5, 5, `Taipei`, `Taipei.jpg`, `This is in Taipei`);
+INSERT INTO `image` VALUES (6, 6, `Shanghai`, `Shanghai.jpg`, `This is in Shanghai`);
+INSERT INTO `image` VALUES (7, 6, `Shanghai`, `Shanghai1.jpg`, `This is in Shanghai`);
+INSERT INTO `image` VALUES (8,7, `Georgetown`, `Georgetown.jpg`, `This is in Georgetown`);
+INSERT INTO `image` VALUES (9, 9, `Pompeii`, `Pompeii.jpg`, `This is in Pompeii`);
+INSERT INTO `image` VALUES (10, 8, `Kuala Lumpur`, `KualaLumpur.jpg`, `This is in Kuala Lumpur`);
 
 INSERT INTO `itinerary` VALUES (1, 1, `Day 1`);
 INSERT INTO `itinerary` VALUES (2, 2, `Day 1`);
