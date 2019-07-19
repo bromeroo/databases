@@ -167,6 +167,16 @@ select country, fname,phoneno,email from package inner join travel_agency on pac
 +----------+
 1 row in set (0.00 sec)
 
+5)select count(*),gender from customer group by gender;
++----------+--------+
+| count(*) | gender |
++----------+--------+
+|        5 | m      |
+|        5 | f      |
++----------+--------+
+2 rows in set (0.00 sec)
+
+
 
 
 
