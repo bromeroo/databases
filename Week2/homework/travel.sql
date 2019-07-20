@@ -93,11 +93,11 @@ INSERT INTO `trip` VALUES (9, "Pompeii", "Pompeii was an ancient Roman city near
 INSERT INTO `trip` VALUES (10, "Jeju Island", "Jeju province encompasses the South Korean island of Jeju in the Korea Strait. It's known for its beach resorts and volcanic landscape of craters and cavelike lava tubes. Hallasan Mountain, a dormant volcano, features hiking trails, a crater lake at the 1,950m summit and nearby Gwaneumsa Temple. The Geomunoreum Lava Tube System includes 7km-long Manjanggul Cave, created centuries ago when Hallasan was still active.", 1);
 
 INSERT INTO `date_option` VALUES (1, "2019-09-01", "2019-09-11", 100, 1);
-INSERT INTO `date_option` VALUES (2, "2019-09-11", "2019-09-21", 200, 1);
+INSERT INTO `date_option` VALUES (2, "2019-09-11", "2019-09-21", 200, 5);
 INSERT INTO `date_option` VALUES (3, "2019-09-21", "2019-10-01", 300, 1);
-INSERT INTO `date_option` VALUES (4, "2019-09-01", "2019-09-11", 400, 2);
+INSERT INTO `date_option` VALUES (4, "2019-09-01", "2019-09-11", 400, 9);
 INSERT INTO `date_option` VALUES (5, "2019-08-01", "2019-08-11", 500, 2);
-INSERT INTO `date_option` VALUES (6, "2019-09-01", "2019-09-08", 600, 3);
+INSERT INTO `date_option` VALUES (6, "2019-09-01", "2019-09-08", 600, 7);
 INSERT INTO `date_option` VALUES (7, "2019-09-08", "2019-09-11", 600, 3);
 INSERT INTO `date_option` VALUES (8,"2019-09-01", "2019-09-18", 700, 4);
 INSERT INTO `date_option` VALUES (9, "2019-09-01", "2019-09-04", 900, 5);
@@ -137,11 +137,11 @@ INSERT INTO `hotel` VALUES (9, 9, 5,"Gueshouse Suji", "Twin");
 INSERT INTO `hotel` VALUES (10, 8,5, "Hotel Marlon", "Deluxe Room");
 
 INSERT INTO `rsvp` VALUES (1, 1, 1);
-INSERT INTO `rsvp` VALUES (2, 2, 2);
+INSERT INTO `rsvp` VALUES (2, 2, 7);
 INSERT INTO `rsvp` VALUES (3, 3, 2);
 INSERT INTO `rsvp` VALUES (4, 4, 1);
-INSERT INTO `rsvp` VALUES (5, 5, 2);
-INSERT INTO `rsvp` VALUES (6, 6, 2);
+INSERT INTO `rsvp` VALUES (5, 5, 9);
+INSERT INTO `rsvp` VALUES (6, 6, 9);
 INSERT INTO `rsvp` VALUES (7, 6, 1);
 INSERT INTO `rsvp` VALUES (8,7, 1);
 INSERT INTO `rsvp` VALUES (9, 9, 1);
@@ -157,3 +157,13 @@ INSERT INTO `payment` VALUES (7, "WePay", 6);
 INSERT INTO `payment` VALUES (8, "ApplePay", 7);
 INSERT INTO `payment` VALUES (9, "Bankcontact", 9);
 INSERT INTO `payment` VALUES (10, "BNP Paribas", 8);
+
+--queries
+-- if we want to know which card the client is using for making the booking
+select client.first_name, client.second_name, payment.card from rsvp left join client on rsvp.client_id = client.id left join payment on rsvp.id = payment.rsvp_id;
+
+--if want to know the location and the price of the trip from the reservation
+select client.first_name, client.second_name, trip.location, date_option.price from rsvp left join client on rsvp.client_id = client.id left join date_option on rsvp.date_option_id = date_option.id left join trip on trip.id = date_option.trip_id;
+
+--if want to know the hotel where to stay from the itinerary
+select * from hotel left join itinerary on hotel.itinerary_id = itinerary.id;
