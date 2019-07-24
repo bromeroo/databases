@@ -18,7 +18,62 @@ Also, please read the following page that explains database foreign keys.
 
 ### Entity Relationship Diagrams
     - Associative entities from many-to-many relationships
-    - Boolean attribute instead of a table
+	- Exercises with ERD
+	
+### Database transactions
+- A transaction is a set of commands that you want to treat as "one command." It has to either happen in full or not at all.
+
+- A classical example is transferring money from one bank account to another. To do that you have first to withdraw the amount from the source account, and then deposit it to the destination account. The operation has to succeed in full. If you stop halfway, the money will be lost, and that is Very Bad.
+
+* To start transaction:
+```
+mysql> start;
+OR
+mysql> begin transaction;
+```
+* To commit, use `commit;` and to abort, use `rollback;`
+* Note that `autocommit` variable should be set to false for rollback to work.
+```
+mysql> set autocommit = 0;
+```
+
+### ACID properties
+
+- **Atomicity** : states that database modifications must follow an “all or nothing” rule.
+Each transaction is said to be “atomic.”
+If one part of the transaction fails, the entire transaction fails.
+- **Consistency** : states that only valid data will be written to the database. If, for some reason, a transaction is executed that violates the database’s consistency rules, the entire transaction will be rolled back, and the database will be restored to a state consistent with those rules.
+- **Isolation** : requires that multiple transactions occurring at the same time not impact each other’s execution.
+- **Durability** : ensures that any transaction committed to the database will not be lost. Durability is ensured through the use of database backups and transaction logs that facilitate the restoration of committed transactions in spite of any subsequent software or hardware failures.
+
+### Views
+When to use them, how to use them
+
+### NoSQL databases
+
+### SQL injection
+
+Some SQL clients accept input from user to fabricate the queries.
+A malicious user can tweak the input so as to acquire more information from the database or
+to destroy the database (literally!). Demo program `sql-injection.js` is in the `Week3` folder.
+
+Consider the following query `SELECT name, salary FROM employees where id = X`.
+
+#### Injection to get more information
+```
+If X is `101 OR 1=1`, then the query returns all records because 1=1 is always true
+SELECT name, salary FROM employees where id = 101 OR 1=1;
+```
+	
+
+## Extra info to look at home
+
+### Promise based program demo
+The program is called `async-create-insert.js` and can be found in Week2 folder.
+- async : to create asynchronous function and ensure they return promise without having to worry
+about building those promises
+- await : to call a function returning promise without having to call .then() over that promise
+- promisify() : to convert a callback based function to a promise based one.
 
 ### Normalization
 Database Design following normal forms as a convention.
@@ -53,45 +108,6 @@ No multi-value dependency.
     - datetime : fixed value (joining date of employee): has a calendar date and a wall clock time
     - timestamp : unix timestamp, seconds elapsed from 1 Jan 1970 00:00 in UTC (takes timezone into consideration)
 
-### Database transactions
-- A transaction is a set of commands that you want to treat as "one command." It has to either happen in full or not at all.
-
-- A classical example is transferring money from one bank account to another. To do that you have first to withdraw the amount from the source account, and then deposit it to the destination account. The operation has to succeed in full. If you stop halfway, the money will be lost, and that is Very Bad.
-
-* To start transaction:
-```
-mysql> start;
-OR
-mysql> begin transaction;
-```
-* To commit, use `commit;` and to abort, use `rollback;`
-* Note that `autocommit` variable should be set to false for rollback to work.
-```
-mysql> set autocommit = 0;
-```
-
-### ACID properties
-
-- **Atomicity** : states that database modifications must follow an “all or nothing” rule.
-Each transaction is said to be “atomic.”
-If one part of the transaction fails, the entire transaction fails.
-- **Consistency** : states that only valid data will be written to the database. If, for some reason, a transaction is executed that violates the database’s consistency rules, the entire transaction will be rolled back, and the database will be restored to a state consistent with those rules.
-- **Isolation** : requires that multiple transactions occurring at the same time not impact each other’s execution.
-- **Durability** : ensures that any transaction committed to the database will not be lost. Durability is ensured through the use of database backups and transaction logs that facilitate the restoration of committed transactions in spite of any subsequent software or hardware failures.
-
-### SQL injection
-
-Some SQL clients accept input from user to fabricate the queries.
-A malicious user can tweak the input so as to acquire more information from the database or
-to destroy the database (literally!). Demo program `sql-injection.js` is in the `Week3` folder.
-
-Consider the following query `SELECT name, salary FROM employees where id = X`.
-
-#### Injection to get more information
-```
-If X is `101 OR 1=1`, then the query returns all records because 1=1 is always true
-SELECT name, salary FROM employees where id = 101 OR 1=1;
-```
 
 #### Injection to destroy the database
 ```
