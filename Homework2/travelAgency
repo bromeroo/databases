@@ -1,0 +1,200 @@
+create database travelAgency
+use travelAgency;
+create table Customers(Costumer_ID int(10) NOT NULL Primary key, Name varchar(30) NOT NULL,Email text,Phone int(13));
+create table Bookings(booking_ID int(10) NOT NULL Primary key,Costumer_ID,BookingDate date,NumberOfPerson int(3));
+create table Package(booking_ID int(12), startDate date, endDate date, costOfHotel int(20), costOfPlane int(20)); 
+create table Destination(DestinationId int(10) NOT NULL Primary Key, Country varchar(30), City varchar(30));
+create table Hotel(HotelId int(10) NOT NULL Primary Key, Name varchar(20),Stars int(1),Adress text, phoneNumber int(20), TypeOfPension varchar(20));
+
+ show tables;
++------------------------+
+| Tables_in_travelagency |
++------------------------+
+| Bookings               |
+| Customers              |
+| Date                   |
+| Destination            |
+| Hotel                  |
+| Package                |
++------------------------+
+
+insert into Customers Value(1, 'Sena Avci', 'senaavci@gmail.com', '0467634676');
+insert into Customers Value(2, 'Emre Avci', 'emreavci@gmail.com', '0469634676');
+insert into Customers Value(5, 'Jessica Andela', 'andelajessi@gmail.com', '0489634676');
+insert into Customers Value(7, 'Harry Andela', 'andelaharry@gmail.com', '0489697676');
+insert into Customers Value(9, 'Harry Pottern', 'potharry@gmail.com', '0489789766');
+insert into Customers Value(12, 'Jennifer Loopez', 'jenilop@gmail.com', '0489712766');
+insert into Customers Value(92, 'James Bonde', 'jamesbonde@gmail.com', '0480312766');
+insert into Customers Value(21, 'Leonardo Dika', 'leodik@gmail.com', '0432341266');
+insert into Customers Value(38, 'Make Dame', 'makedame@gmail.com', '0432374266');
+insert into Customers Value(63, 'David Vinc', 'davidvinc@gmail.com', '0467374266');
+
+
+select * from customers;
++-------------+-----------------+-----------------------+-----------+
+| Costumer_ID | Name            | Email                 | Phone     |
++-------------+-----------------+-----------------------+-----------+
+|           1 | Sena Avci       | senaavci@gmail.com    | 467634676 |
+|           2 | Emre Avci       | emreavci@gmail.com    | 469634676 |
+|           5 | Jessica Andela  | andelajessi@gmail.com | 489634676 |
+|           7 | Harry Andela    | andelaharry@gmail.com | 489697676 |
+|           9 | Harry Pottern   | potharry@gmail.com    | 489789766 |
+|          12 | Jennifer Loopez | jenilop@gmail.com     | 489712766 |
+|          21 | Leonardo Dika   | leodik@gmail.com      | 432341266 |
+|          38 | Make Dame       | makedame@gmail.com    | 432374266 |
+|          63 | David Vinc      | davidvinc@gmail.com   | 467374266 |
+|          92 | James Bonde     | jamesbonde@gmail.com  | 480312766 |
++-------------+-----------------+-----------------------+-----------+
+
+insert into Bookings value (29,5,'2019-01-13', 3);
+insert into Bookings value (23,1,'2019-01-03', 4);
+insert into Bookings value (3,2,'2019-04-03', 2);
+insert into Bookings value (5,21,'2019-05-31', 1);
+insert into Bookings value (32,92,'2019-05-01', 2);
+insert into Bookings value (22,38,'2019-06-01', 3);
+insert into Bookings value (25,9,'2019-03-14',2);
+insert into Bookings value (50,63,'2019-04-24',5);
+insert into Bookings value (34,7,'2019-02-02',1);
+insert into Bookings value (49,12,'2019-05-02',2);
+
+select * from bookings;
++------------+-------------+-------------+----------------+
+| booking_ID | customer_ID | BookingDate | NumberOfPerson |
++------------+-------------+-------------+----------------+
+|          3 |           2 | 2019-04-03  |              2 |
+|          5 |          21 | 2019-05-31  |              1 |
+|         22 |          38 | 2019-06-01  |              3 |
+|         23 |           1 | 2019-01-03  |              4 |
+|         25 |           9 | 2019-03-14  |              2 |
+|         29 |           5 | 2019-01-13  |              3 |
+|         32 |          92 | 2019-05-01  |              2 |
+|         34 |           7 | 2019-02-02  |              1 |
+|         49 |          12 | 2019-05-02  |              2 |
+|         50 |          63 | 2019-04-24  |              5 |
++------------+-------------+-------------+----------------+
+
+
+
+insert into package value (3, '2019-06-01', '2019-06-05', 1200,200);
+insert into package value (5, '2019-06-04', '2019-06-09', 900,100);
+insert into package value (22, '2019-06-08', '2019-06-13', 1500,400);
+insert into package value (23, '2019-06-13', '2019-06-19', 1900,900); 
+insert into package value (25, '2019-07-09', '2019-07-12',1250,380);
+insert into package value (29, '2019-07-29', '2019-08-03', 1700,800);                                           insert into package value (32, '2019-07-19', '2019-07-22', 1900,900); 
+insert into package value (34, '2019-07-21', '2019-07-29', 600,200);
+insert into package value (49, '2019-08-09', '2019-08-12', 1100,400);
+insert into package value (50, '2019-08-12', '2019-08-15', 3000,1000); 
+
+select * from package;
++------------+------------+------------+-------------+-------------+
+| booking_ID | startDate  | endDate    | costOfHotel | costOfPlane |
++------------+------------+------------+-------------+-------------+
+|          3 | 2019-06-01 | 2019-06-05 |        1200 |         200 |
+|          5 | 2019-06-04 | 2019-06-09 |         900 |         100 |
+|         22 | 2019-06-08 | 2019-06-13 |        1500 |         400 |
+|         23 | 2019-06-13 | 2019-06-19 |        1900 |         900 |
+|         25 | 2019-07-09 | 2019-07-12 |        1250 |         380 |
+|         29 | 2019-07-29 | 2019-08-03 |        1700 |         800 |
+|         32 | 2019-07-19 | 2019-07-22 |        1900 |         900 |
+|         34 | 2019-07-21 | 2019-07-29 |         600 |         200 |
+|         49 | 2019-08-09 | 2019-08-12 |        1100 |         400 |
+|         50 | 2019-08-12 | 2019-08-15 |        3000 |        1000 |
++------------+------------+------------+-------------+-------------+
+
+
+drop table destination;
+alter table package add Country varchar(30) after booking_ID;
+alter table package add City varchar(30) after Country;
+
+select * from package;
++------------+---------+------+------------+------------+-------------+-------------+
+| booking_ID | Country | City | startDate  | endDate    | costOfHotel | costOfPlane |
++------------+---------+------+------------+------------+-------------+-------------+
+|          3 | NULL    | NULL | 2019-06-01 | 2019-06-05 |        1200 |         200 |
+|          5 | NULL    | NULL | 2019-06-04 | 2019-06-09 |         900 |         100 |
+|         22 | NULL    | NULL | 2019-06-08 | 2019-06-13 |        1500 |         400 |
+|         23 | NULL    | NULL | 2019-06-13 | 2019-06-19 |        1900 |         900 |
+|         25 | NULL    | NULL | 2019-07-09 | 2019-07-12 |        1250 |         380 |
+|         29 | NULL    | NULL | 2019-07-29 | 2019-08-03 |        1700 |         800 |
+|         32 | NULL    | NULL | 2019-07-19 | 2019-07-22 |        1900 |         900 |
+|         34 | NULL    | NULL | 2019-07-21 | 2019-07-29 |         600 |         200 |
+|         49 | NULL    | NULL | 2019-08-09 | 2019-08-12 |        1100 |         400 |
+|         50 | NULL    | NULL | 2019-08-12 | 2019-08-15 |        3000 |        1000 |
++------------+---------+------+------------+------------+-------------+-------------+
+
+update package set country='Italy', city='Rome' where booking_ID=3;
+
+update package set country='Italy', city='Pisa' where booking_ID=5;
+
+update package set country='France', city='Paris' where booking_ID=22;
+
+update package set country='France', city='Marseille' where booking_ID=23;
+
+update package set country='Italy', city='Pisa' where booking_ID=25;
+
+update package set country='USA', city='New York' where booking_ID=29;
+
+update package set country='USA', city='San Francisco' where booking_ID=32;
+
+update package set country='Japan', city='Tokyo' where booking_ID=34;
+
+update package set country='Greece', city='Athens' where booking_ID=49;
+
+update package set country='Greece', city='Kos' where booking_ID=50;
+
+select * from package;
++------------+---------+---------------+------------+------------+-------------+-------------+
+| booking_ID | Country | City          | startDate  | endDate    | costOfHotel | costOfPlane |
++------------+---------+---------------+------------+------------+-------------+-------------+
+|          3 | Italy   | Rome          | 2019-06-01 | 2019-06-05 |        1200 |         200 |
+|          5 | Italy   | Pisa          | 2019-06-04 | 2019-06-09 |         900 |         100 |
+|         22 | France  | Paris         | 2019-06-08 | 2019-06-13 |        1500 |         400 |
+|         23 | France  | Marseille     | 2019-06-13 | 2019-06-19 |        1900 |         900 |
+|         25 | Italy   | Pisa          | 2019-07-09 | 2019-07-12 |        1250 |         380 |
+|         29 | USA     | New York      | 2019-07-29 | 2019-08-03 |        1700 |         800 |
+|         32 | USA     | San Francisco | 2019-07-19 | 2019-07-22 |        1900 |         900 |
+|         34 | Japan   | Tokyo         | 2019-07-21 | 2019-07-29 |         600 |         200 |
+|         49 | Greece  | Athens        | 2019-08-09 | 2019-08-12 |        1100 |         400 |
+|         50 | Greece  | Kos           | 2019-08-12 | 2019-08-15 |        3000 |        1000 |
++------------+---------+---------------+------------+------------+-------------+-------------+
+
+
+insert into hotel value (1, 'Ask Hotel', 3, 'Rome-Italy',1236789,'half pension'), (2, 'Jeme Hotel', 2, 'Paris-France',2345889,'half pension'), (3, 'Pasibub Hotel', 3, 'Marseille-France',3453289,'half pension'), (4, 'Konaciva Hotel', 1, 'Tokyo-Japan',3453349,'full pension'), (5, 'Kos Hotel', 5, 'Athens-Greece',13452349,'full pension'), (6, 'Athens Hotel', 3, 'Athens-Kos',1345319,'half pension'), (7, 'Pasta Hotel', 2, 'Pisa-Italy',1312349,'half pension'), (8, 'NY Hotel', 2, 'New York-USA',2312349,'half pension'), (9, 'SF Hotel', 1, 'San Francisco-USA',23431349,'full pension'), (10, 'Nam Hotel', 4, 'Paris-France', 12345454, 'full pension'); 
+
+select * from hotel;
++---------+----------------+-------+-------------------+-------------+---------------+
+| HotelId | Name           | Stars | Adress            | phoneNumber | TypeOfPension |
++---------+----------------+-------+-------------------+-------------+---------------+
+|       1 | Ask Hotel      |     3 | Rome-Italy        |     1236789 | half pension  |
+|       2 | Jeme Hotel     |     2 | Paris-France      |     2345889 | half pension  |
+|       3 | Pasibub Hotel  |     3 | Marseille-France  |     3453289 | half pension  |
+|       4 | Konaciva Hotel |     1 | Tokyo-Japan       |     3453349 | full pension  |
+|       5 | Kos Hotel      |     5 | Athens-Greece     |    13452349 | full pension  |
+|       6 | Athens Hotel   |     3 | Athens-Kos        |     1345319 | half pension  |
+|       7 | Pasta Hotel    |     2 | Pisa-Italy        |     1312349 | half pension  |
+|       8 | NY Hotel       |     2 | New York-USA      |     2312349 | half pension  |
+|       9 | SF Hotel       |     1 | San Francisco-USA |    23431349 | full pension  |
+|      10 | Nam Hotel      |     4 | Paris-France      |    12345454 | full pension  |
++---------+----------------+-------+-------------------+-------------+---------------+
+
+ the queries (using JOINS) 
+ 
+ 1.  select name, NumberOfPerson from customers inner join bookings on customers.costumer_ID=bookings.customer_ID;
++-----------------+----------------+
+| name            | NumberOfPerson |
++-----------------+----------------+
+| Emre Avci       |              2 |
+| Leonardo Dika   |              1 |
+| Make Dame       |              3 |
+| Sena Avci       |              4 |
+| Harry Pottern   |              2 |
+| Jessica Andela  |              3 |
+| James Bonde     |              2 |
+| Harry Andela    |              1 |
+| Jennifer Loopez |              2 |
+| David Vinc      |              5 |
++-----------------+----------------+
+
+2. 
+ 
+ 
