@@ -21,7 +21,7 @@ app.use(require('./routes/user'));
 app.use(require('./routes/city'));
 
 app.get('/', function (request, response) {
-    return response.redirect('cities');
+    return response.redirect('/city');
 });
 
 app.listen(3000, function () {
